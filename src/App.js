@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ZipForm from './components/ZipForm';
-import Wrapper from './components/Wrapper';
+import AirData from './components/AirData';
 
 class App extends Component {
   constructor(props) {
@@ -36,8 +36,7 @@ class App extends Component {
           <h1 className="App-title">Get Some Fresh Air</h1>
         </header>
         <ZipForm submitZip={this.submitZip}/>
-        {/* <Wrapper /> */}
-        {!this.state.loading && <p>03: {this.state.O3} PM2.5: {this.state['PM2.5']}</p>}
+        {!this.state.loading && <AirData O3={this.state.O3} PM={this.state['PM2.5']}/>}
       </div>
     );
   }
