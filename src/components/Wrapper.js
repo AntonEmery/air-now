@@ -22,7 +22,6 @@ class Wrapper extends Component {
         loading: false
       })
     })
-    console.log(this.state);
   }
 
   render() {
