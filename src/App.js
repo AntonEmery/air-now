@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ZipForm from './components/Zip_Form';
+import Wrapper from './components/Wrapper';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
           <h1 className="App-title">Get Some Fresh Air</h1>
         </header>
         <ZipForm />
+        <Wrapper />
       </div>
     );
   }
