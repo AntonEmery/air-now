@@ -10,22 +10,24 @@ class App extends Component {
     this.state = {
       O3: '',
       'PM2.5': '',
-      loading: true
+      displayData: false,
     }
-
   }
 
   submitZip = async (zip) => {
-    await fetch(`http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=${zip}&API_KEY=D2BEB195-8B67-4BFE-9C6B-68D847F86F2E`)
+    this.setState({ loading: true }, () => {
+     fetch(`http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=${zip}&API_KEY=D2BEB195-8B67-4BFE-9C6B-68D847F86F2E`)
     .then(data => {
       return data.json();
     }).then(result => {
       this.setState({
         O3: result[0].Category.Name,
         'PM2.5': result[1].Category.Name,
+        displayData: true,
         loading: false
       })
     })
+  })
   }
 
 
@@ -35,8 +37,9 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Get Some Fresh Air</h1>
         </header>
-        <ZipForm submitZip={this.submitZip}/>
-        {!this.state.loading && <AirData O3={this.state.O3} PM={this.state['PM2.5']}/>}
+        <ZipForm submitZip={this.submitZip} />
+        {!this.state.displayData && this.state.loading && <p>Loading</p>}
+        {this.state.displayData && <AirData O3={this.state.O3} PM={this.state['PM2.5']}/>}
       </div>
     );
   }
