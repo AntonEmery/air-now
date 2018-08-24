@@ -16,18 +16,18 @@ class App extends Component {
 
   submitZip = async (zip) => {
     this.setState({ loading: true }, () => {
-     fetch(`http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=${zip}&API_KEY=D2BEB195-8B67-4BFE-9C6B-68D847F86F2E`)
-    .then(data => {
-      return data.json();
-    }).then(result => {
-      this.setState({
-        O3: result[0].Category.Name,
-        'PM2.5': result[1].Category.Name,
-        displayData: true,
-        loading: false
+      fetch(`http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=${zip}&API_KEY=D2BEB195-8B67-4BFE-9C6B-68D847F86F2E`)
+      .then(data => {
+        return data.json();
+      }).then(result => {
+        this.setState({
+          O3: result[0].Category.Name,
+          'PM2.5': result[1].Category.Name,
+          displayData: true,
+          loading: false
+        })
       })
     })
-  })
   }
 
 
